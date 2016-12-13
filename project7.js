@@ -14,8 +14,8 @@ function transformPoint(event) {
 function drawSquare(x, y, size, color) {
   // square drawing code here
   var newsquare = document.createElementNS(namespace, "rect")
-  newsquare.setAttribute("x", xpos)
-  newsquare.setAttribute("y", ypos)
+  newsquare.setAttribute("x", x)
+  newsquare.setAttribute("y", y)
   newsquare.setAttribute("width", size)
   newsquare.setAttribute("height", size)
   newsquare.setAttribute("fill", color);
@@ -46,5 +46,5 @@ document.addEventListener("mousemove", function(e) {
 })
 
 document.addEventListener("mouseup", function(e) {
-  
+
 })
