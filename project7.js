@@ -45,6 +45,15 @@ document.addEventListener("mouseup", function(e) {
 document.addEventListener("mousemove", function(e) {
  if(drawing) {
    var point = transformPoint(e)
-   drawSquare(point.x,point.y, 15,"blue")
+   var shape = document.getElementById("shapeSelect").value
+   if(shape == "circle"){
+     drawCircle(point.x,point.y, 5,"blue")
+   }
+   else{
+     drawSquare(point.x,point.y, 25,"red")
+   }
+
+   //drawSquare(point.x,point.y, 25,"red")
+   //drawCircle(point.x,point.y, 5,"blue")
  }
 })
