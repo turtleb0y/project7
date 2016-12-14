@@ -30,21 +30,21 @@ function drawCircle(cx, cy, radius, color) {
   newcircle.setAttribute("fill", color)
   screen.appendChild(newcircle)
 }
+var drawing = false
 // Step 3: Event listeners
 document.addEventListener("mousedown", function(e) {
-  //var pt = transformPoint(e)
-  //var selectShape = document.getElementById("shapeSelect").value
-  //var selectColor
-  //if(selectShape == "circle")
-})
-
-document.addEventListener("mousemove", function(e) {
-  var pt = transformPoint(e)
-  var selectShape = document.getElementById("shapeSelect").value
-  var selectColor
-  if(selectShape == "circle")
+ // what do you want to do when the user presses down
+ // on the mouse button?
+ drawing = true
 })
 
 document.addEventListener("mouseup", function(e) {
+ drawing = false
+})
 
+document.addEventListener("mousemove", function(e) {
+ if(drawing) {
+   var point = transformPoint(e)
+   drawSquare(point.x,point.y, 15,"blue")
+ }
 })
