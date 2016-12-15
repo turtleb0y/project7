@@ -43,14 +43,17 @@ document.addEventListener("mouseup", function(e) {
 })
 
 document.addEventListener("mousemove", function(e) {
+  var color = document.getElementById("colorSelect").value
  if(drawing) {
    var point = transformPoint(e)
+   var color = document.getElementById("colorSelect").value
    var shape = document.getElementById("shapeSelect").value
+   var size = document.getElementById("sizeSelect").value
    if(shape == "circle"){
-     drawCircle(point.x,point.y, 5,"blue")
+     drawCircle(point.x,point.y, 15,"red")
    }
    else{
-     drawSquare(point.x,point.y, 25,"red")
+     drawSquare(point.x,point.y, 15,"red")
    }
 
    //drawSquare(point.x,point.y, 25,"red")
