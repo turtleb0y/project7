@@ -11,15 +11,15 @@ function transformPoint(event) {
 }
 
 // Step 2: drawSquare and drawCircle functions
-function drawSquare(x, y, size, color) {
+function drawRectangle(x, y, width, color) {
   // square drawing code here
-  var newsquare = document.createElementNS(namespace, "rect")
-  newsquare.setAttribute("x", x)
-  newsquare.setAttribute("y", y)
-  newsquare.setAttribute("width", size)
-  newsquare.setAttribute("height", size)
-  newsquare.setAttribute("fill", color);
-  screen.appendChild(newsquare)
+  var newrect = document.createElementNS(namespace, "rect")
+  newrect.setAttribute("x", x)
+  newrect.setAttribute("y", y)
+  newrect.setAttribute("width", width)
+  newrect.setAttribute("height", width)
+  newrect.setAttribute("fill", color);
+  screen.appendChild(newrect)
 }
 
 function drawCircle(cx, cy, radius, color) {
@@ -33,30 +33,41 @@ function drawCircle(cx, cy, radius, color) {
 var drawing = false
 // Step 3: Event listeners
 document.addEventListener("mousedown", function(e) {
- // what do you want to do when the user presses down
- // on the mouse button?
- drawing = true
+  var pt = transformPoint(e, screen)
+  drawing = true
+  var color = (document.getElementById("colorSelect").value)
+  var shape = (document.getElementById("shapeSelect").value)
+  var size = (document.getElementById("sizeSelect").value)
+  var pt = transformPoint(e, screen)
+  if(drawing == true){
+  }
+  if(shape == "circle"){
+    drawCircle(color, size, pt.x, pt.y)
+  }
+  else{
+    drawRectangle(color, size, pt.x, pt.y)
+  }
 })
 
 document.addEventListener("mouseup", function(e) {
- drawing = false
+  var pt = transformPoint(e, screen)
+  drawing = false
 })
 
 document.addEventListener("mousemove", function(e) {
   var color = document.getElementById("colorSelect").value
- if(drawing) {
-   var point = transformPoint(e)
-   var color = document.getElementById("colorSelect").value
-   var shape = document.getElementById("shapeSelect").value
-   var size = document.getElementById("sizeSelect").value
+  var shape = document.getElementById("shapeSelect").value
+  var size = document.getElementById("sizeSelect").value
+  var pt = transformPoint(e)
+  if(drawing == true) {
    if(shape == "circle"){
-     drawCircle(point.x,point.y, 15,"red")
+     drawCircle(color,size, pt.x, pt.y)
    }
    else{
-     drawSquare(point.x,point.y, 15,"red")
+     drawRectangle(color,size, pt.x, pt.y)
    }
 
    //drawSquare(point.x,point.y, 25,"red")
    //drawCircle(point.x,point.y, 5,"blue")
- }
+  }
 })
