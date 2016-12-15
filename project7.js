@@ -1,6 +1,6 @@
 var screen = document.getElementById("screen")
 var namespace = "http://www.w3.org/2000/svg"
-
+var draw = false;
 // utility function
 function transformPoint(event) {
   var pt = screen.createSVGPoint()
@@ -11,63 +11,65 @@ function transformPoint(event) {
 }
 
 // Step 2: drawSquare and drawCircle functions
-function drawRectangle(x, y, width, color) {
-  // square drawing code here
-  var newrect = document.createElementNS(namespace, "rect")
-  newrect.setAttribute("x", x)
-  newrect.setAttribute("y", y)
+function drawRectangle(color,width,x,y) {
+    var newrect = document.createElementNS(namespace, "rect")
+  newrect.setAttribute("x",   x)
+  newrect.setAttribute("y",   y)
   newrect.setAttribute("width", width)
   newrect.setAttribute("height", width)
-  newrect.setAttribute("fill", color);
+  newrect.setAttribute("fill", color)
   screen.appendChild(newrect)
 }
 
-function drawCircle(cx, cy, radius, color) {
+function drawCircle(color,r,x,y) {
   var newcircle = document.createElementNS(namespace, "circle")
-  newcircle.setAttribute("cx", cx)
-  newcircle.setAttribute("cy", cy)
-  newcircle.setAttribute("r", radius)
+  newcircle.setAttribute("cx", x)
+  newcircle.setAttribute("cy", y)
   newcircle.setAttribute("fill", color)
-  screen.appendChild(newcircle)
+  newcircle.setAttribute("r", r)
+  screen.appendChild(newcircle);
 }
-var drawing = false
+
 // Step 3: Event listeners
 document.addEventListener("mousedown", function(e) {
-  var pt = transformPoint(e, screen)
-  drawing = true
-  var color = (document.getElementById("colorSelect").value)
-  var shape = (document.getElementById("shapeSelect").value)
-  var size = (document.getElementById("sizeSelect").value)
-  var pt = transformPoint(e, screen)
-  if(drawing == true){
-  }
-  if(shape == "circle"){
-    drawCircle(color, size, pt.x, pt.y)
-  }
-  else{
-    drawRectangle(color, size, pt.x, pt.y)
-  }
+    var pt = transformPoint(e, screen)
+    draw = true
+      var colorSelect = (document.getElementById("colorSelect").value)
+      var shapeSelect = ((document.getElementById("shapeSelect").value))
+      var sizeSelect = (document.getElementById("sizeSelect").value)
+      var pt = transformPoint(e, screen)
+      if(draw == true){
+        if(colorSelect == "rainbow"){
+          colorSelect = 'hsl('+(rainbowColor += 1)+', 100%, 50%)';
+        }
+        if(shapeSelect == "square"){
+        drawRectangle(colorSelect,sizeSelect,pt.x,pt.y);
+        }
+        else{
+        drawCircle(colorSelect,sizeSelect,pt.x,pt.y);
+        }
+      }
 })
 
 document.addEventListener("mouseup", function(e) {
-  var pt = transformPoint(e, screen)
-  drawing = false
+    var pt = transformPoint(e, screen)
+    draw = false
 })
 
 document.addEventListener("mousemove", function(e) {
-  var color = document.getElementById("colorSelect").value
-  var shape = document.getElementById("shapeSelect").value
-  var size = document.getElementById("sizeSelect").value
-  var pt = transformPoint(e)
-  if(drawing == true) {
-   if(shape == "circle"){
-     drawCircle(color,size, pt.x, pt.y)
-   }
-   else{
-     drawRectangle(color,size, pt.x, pt.y)
-   }
-
-   //drawSquare(point.x,point.y, 25,"red")
-   //drawCircle(point.x,point.y, 5,"blue")
-  }
+    var colorSelect = (document.getElementById("colorSelect").value)
+    var shapeSelect = (document.getElementById("shapeSelect").value)
+    var sizeSelect = (document.getElementById("sizeSelect").value)
+    var pt = transformPoint(e, screen)
+      if(draw == true){
+        if(colorSelect == "rainbow"){
+          colorSelect = 'hsl('+(rainbowColor += 1)+', 100%, 50%)';
+        }
+        if(shapeSelect == "square"){
+        drawRectangle(colorSelect,sizeSelect,pt.x,pt.y);
+        }
+        else{
+        drawCircle(colorSelect,sizeSelect,pt.x,pt.y);
+        }
+      }
 })
