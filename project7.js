@@ -39,9 +39,6 @@ document.addEventListener("mousedown", function(e) {
       var sizeSelect = (document.getElementById("sizeSelect").value)
       var pt = transformPoint(e, screen)
       if(draw == true){
-        if(colorSelect == "rainbow"){
-          colorSelect = 'hsl('+(rainbowColor += 1)+', 100%, 50%)';
-        }
         if(shapeSelect == "square"){
         drawRectangle(colorSelect,sizeSelect,pt.x,pt.y);
         }
@@ -62,9 +59,6 @@ document.addEventListener("mousemove", function(e) {
     var sizeSelect = (document.getElementById("sizeSelect").value)
     var pt = transformPoint(e, screen)
       if(draw == true){
-        if(colorSelect == "rainbow"){
-          colorSelect = 'hsl('+(rainbowColor += 1)+', 100%, 50%)';
-        }
         if(shapeSelect == "square"){
         drawRectangle(colorSelect,sizeSelect,pt.x,pt.y);
         }
