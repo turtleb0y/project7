@@ -21,12 +21,12 @@ function drawRectangle(color,width,x,y) {
   screen.appendChild(newrect)
 }
 
-function drawCircle(color,r,x,y) {
+function drawCircle(color,radius,x,y) {
   var newcircle = document.createElementNS(namespace, "circle")
   newcircle.setAttribute("cx", x)
   newcircle.setAttribute("cy", y)
   newcircle.setAttribute("fill", color)
-  newcircle.setAttribute("r", r)
+  newcircle.setAttribute("r", radius)
   screen.appendChild(newcircle);
 }
 
